@@ -77,9 +77,9 @@ if [[  $confirm -eq 2 ]]; then
     exit 0
 fi
 mkdir -p ${web_dir}"/certificate/challenges"
-chmod -R 755 $web_dir
+chmod -R 755 ${web_dir}"/certificate"
 web_first_parent_dir="/"$(echo $web_dir|cut -d "/" -f2)
-chmod -R o+x $web_first_parent_dir
+find $web_first_parent_dir -type d -exec chmod o+x {} \;
 cd $web_dir"/certificate"
 # Create a Let's Encrypt account private key
 openssl genrsa 4096 > account.key
